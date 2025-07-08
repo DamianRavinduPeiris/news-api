@@ -46,7 +46,7 @@ src/
    ```
 
 2. **Configure the database:**
-   - Edit `src/main/resources/application.yml` to set your database connection (H2 is default for development).
+   - Edit `src/main/resources/application.yml` to set your database connection.
 
 3. **Build the project:**
    ```
