@@ -60,67 +60,6 @@ src/
 
    The API will be available at `http://localhost:8080/`.
 
-## API Endpoints
-
-### News Categories
-
-- `GET /categories`  
-  Get all news categories.
-
-- `GET /categories/{id}`  
-  Get a category by its ID.
-
-### News
-
-- `GET /news`  
-  Get all news articles.
-
-- `GET /news/{id}`  
-  Get a news article by ID.
-
-- `POST /news`  
-  Create a new news article.
-
-- `PUT /news/{id}`  
-  Update an existing news article.
-
-- `DELETE /news/{id}`  
-  Delete a news article.
-
-## Example Request
-
-**Create a News Article**
-```http
-POST /news
-Content-Type: application/json
-
-{
-  "title": "Spring Boot 3 Released",
-  "content": "Spring Boot 3 brings many new features...",
-  "categoryId": "1"
-}
-```
-
-## Error Handling
-
-- Returns `404 Not Found` if a resource does not exist.
-- Returns `400 Bad Request` for invalid input.
-- Custom error messages are provided in the response body.
-
-## Testing
-
-Run all tests with:
-```
-./mvnw test
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
-5. Create a new Pull Request
 
 ## License
 
