@@ -5,7 +5,6 @@ A RESTful API built with Spring Boot for managing news articles and their catego
 ## Features
 
 - Manage news articles and categories
-- Retrieve all news or filter by category
 - Add, and view news articles
 - Exception handling with custom error responses
 - Layered architecture (Controller, Service, Repository)
