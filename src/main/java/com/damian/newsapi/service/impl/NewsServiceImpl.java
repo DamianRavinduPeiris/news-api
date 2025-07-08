@@ -1,6 +1,9 @@
 package com.damian.newsapi.service.impl;
 
+import com.damian.newsapi.dto.NewsDTO;
 import com.damian.newsapi.entity.News;
+import com.damian.newsapi.entity.NewsCategory;
+import com.damian.newsapi.exception.InvalidNewsException;
 import com.damian.newsapi.repo.NewsRepository;
 import com.damian.newsapi.service.NewsService;
 import jakarta.transaction.Transactional;
@@ -25,18 +28,26 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public Optional<News> getNewsById(Long id) {
+    public Optional<News> getNewsById(String id) {
         return newsRepository.findById(id);
     }
 
     @Override
-    public News createNews(News news) {
-        return newsRepository.save(news);
-    }
+    public News createNews(NewsDTO news) {
+        if (getNewsById(news.newsId()).isEmpty()) {
+            var newsEntity = new News();
+            newsEntity.setNewsId(news.newsId());
+            newsEntity.setHeadLine(news.headLine());
+            newsEntity.setNewsContent(news.newsContent());
 
-    @Override
-    public void deleteNews(Long id) {
-        newsRepository.deleteById(id);
+            var categories = List.of(news.newsCategories());
+            for (NewsCategory category : categories) {
+                category.setNews(newsEntity);
+            }
+            newsEntity.setNewsCategories(categories);
+            return newsRepository.save(newsEntity);
+        }
+        log.warn("News with ID {} already exists", news.newsId());
+        throw new InvalidNewsException("News with ID " + news.newsId() + " already exists.");
     }
 }
-

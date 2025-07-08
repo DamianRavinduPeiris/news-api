@@ -1,5 +1,6 @@
 package com.damian.newsapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,9 +9,10 @@ import lombok.Data;
 public class NewsCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String categoryId;
+    private Long categoryId;
     private String categoryName;
-    @ManyToOne
-    @JoinColumn(name = "newsId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "newsId", nullable = false)
+    @JsonIgnore
     private News news;
 }

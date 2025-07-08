@@ -7,7 +7,5 @@ import java.util.Optional;
 public interface NewsCategoryService {
     List<NewsCategory> getAllCategories();
     Optional<NewsCategory> getCategoryById(String id);
-    NewsCategory createCategory(NewsCategory category);
-    void deleteCategory(String id);
 }
 

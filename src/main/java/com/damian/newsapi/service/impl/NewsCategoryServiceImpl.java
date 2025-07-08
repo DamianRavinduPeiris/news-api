@@ -28,15 +28,5 @@ public class NewsCategoryServiceImpl implements NewsCategoryService {
     public Optional<NewsCategory> getCategoryById(String id) {
         return newsCategoryRepository.findById(id);
     }
-
-    @Override
-    public NewsCategory createCategory(NewsCategory category) {
-        return newsCategoryRepository.save(category);
-    }
-
-    @Override
-    public void deleteCategory(String id) {
-        newsCategoryRepository.deleteById(id);
-    }
 }
 
