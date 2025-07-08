@@ -4,15 +4,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 public class NewsCategory {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
+    private String categoryId;
     private String categoryName;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "newsId", nullable = false)
+    @ManyToMany(mappedBy = "newsCategories")
     @JsonIgnore
-    private News news;
+    private List<News> news = new ArrayList<>();
 }

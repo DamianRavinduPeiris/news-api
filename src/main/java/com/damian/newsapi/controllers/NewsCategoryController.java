@@ -17,12 +17,15 @@ public class NewsCategoryController {
     private final NewsCategoryService newsCategoryService;
 
     @GetMapping
-    public List<NewsCategory> getAllCategories() {
-        return newsCategoryService.getAllCategories();
+    public ResponseEntity<List<NewsCategory>> getAllCategories() {
+        var categories = newsCategoryService.getAllCategories();
+        return ResponseEntity.ok(categories);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<NewsCategory> getCategoryById(@PathVariable String id) {
-        return newsCategoryService.getCategoryById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return newsCategoryService.getCategoryById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

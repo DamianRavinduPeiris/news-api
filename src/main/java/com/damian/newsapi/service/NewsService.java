@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface NewsService {
-    List<News> getAllNews();
+    List<NewsDTO> getAllNews();
     Optional<News> getNewsById(String id);
-    News createNews(NewsDTO newsDTO);
+    NewsDTO createNews(NewsDTO newsDTO);
 }
 

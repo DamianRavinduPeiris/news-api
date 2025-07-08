@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,7 +14,12 @@ public class News {
     private String newsId;
     private String headLine;
     private String newsContent;
-    @OneToMany(mappedBy = "news",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "news_and_category",
+        joinColumns = @JoinColumn(name = "news_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
     @JsonIgnore
-    private List<NewsCategory> newsCategories;
+    private List<NewsCategory> newsCategories = new ArrayList<>();
 }
