@@ -1,6 +1,5 @@
 package com.damian.newsapi.entity;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -14,5 +13,6 @@ public class News {
     private String headLine;
     private String newsContent;
     @OneToMany(mappedBy = "news",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "news")
     private List<NewsCategory> newsCategories;
 }
